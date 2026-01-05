@@ -22,7 +22,9 @@ export namespace SystemPrompt {
     return []
   }
 
-  export function provider(model: Provider.Model) {
+  export async function provider(model: Provider.Model) {
+    const config = await Config.get()
+    if (config.customPrompt) return [config.customPrompt]
     if (model.api.id.includes("gpt-5")) return [PROMPT_CODEX]
     if (model.api.id.includes("gpt-") || model.api.id.includes("o1") || model.api.id.includes("o3"))
       return [PROMPT_BEAST]

@@ -5,6 +5,7 @@
   //   "url": "https://enterprise.dev.opencode.ai",
   // },
   "instructions": ["STYLE_GUIDE.md"],
+  "customPrompt": "You are a helpful assistant for general tasks, not limited to coding.",
   "provider": {
     "opencode": {
       "options": {},

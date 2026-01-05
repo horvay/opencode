@@ -782,6 +782,10 @@ export namespace Config {
         .string()
         .describe("Small model to use for tasks like title generation in the format of provider/model")
         .optional(),
+      customPrompt: z
+        .string()
+        .optional()
+        .describe("Custom system prompt to use for all models, overriding the default provider prompts"),
       default_agent: z
         .string()
         .optional()
