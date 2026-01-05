@@ -57,8 +57,12 @@ export namespace LLM {
     const system = SystemPrompt.header(input.model.providerID)
     system.push(
       [
-        // use agent prompt otherwise provider prompt
-        ...(input.agent.prompt ? [input.agent.prompt] : await SystemPrompt.provider(input.model)),
+        // use customPrompt if set, otherwise agent prompt, otherwise provider prompt
+        ...(cfg.customPrompt
+          ? [cfg.customPrompt]
+          : input.agent.prompt
+            ? [input.agent.prompt]
+            : SystemPrompt.provider(input.model)),
         // any custom prompt passed into this call
         ...input.system,
         // any custom prompt from last user message
